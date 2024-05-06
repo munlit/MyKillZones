@@ -1,0 +1,145 @@
+// ╔═══════════════════════════════════════╗
+// ║  @Ultr                                ║
+// ║  My KillZones                         ║
+// ║  © LuxAlgo                            ║
+// ╚═══════════════════════════════════════╝
+
+//@version=5
+indicator("Multi CrossOver Moving Average (@Ultr)", shorttitle = "MC MA (@Ultr.)", overlay = true)
+
+//  ════════════
+//  My Killzones
+//  Constants
+//  ═════════
+
+// Color
+color colorZero = color.new(#0034c5, 90)
+color colorFirs = color.new(#33ffac, 90)
+color colorSeco = color.new(#e91e63, 75)
+color colorThir = color.new(#eedd45, 90)
+color colorCuar = color.new(#9598a1, 90)
+
+// Session
+string sessionNewY = "America/New_York"		// Sesion - America/New York
+string sessionChig = "America/Chicago"		// Sesion - America/Chicago
+string sessionEuro = "Europe/London"			// Sesion - Europa/Londres
+string sessionAsia = "Asia/Shanghai" 		// Sesion - Asia/Shanghai
+string sessionAust = "Australia/Sydney" 		// Sesion - Asia/Sydney
+
+// Indicador
+// int length = input.int(20, title="Length", minval=8)
+longitud = input.int(20)
+
+float sMa   = ta.sma(close,  longitud)	// Media Movil Simple
+float eMa   = ta.ema(close,  longitud)	// Media Movil Exponencial
+float rMa   = ta.rma(close,  longitud)	// Media Movil
+float wMa   = ta.wma(close,  longitud)	// Media Movil Ponderada
+float vwMa  = ta.vwma(close, longitud)	// Media Movil Ponderada por volumen
+float lsMa  = ta.linreg(close, longitud, 0)	// Media Movil de mínimos cuadrados
+// float tMa	= ta.sma(ta.sma(src, math.ceil(length / 2)), math.floor(length / 2) + 1)
+// float deMa	= 2 * eMa - ta.ema(eMa, length)
+// float teMa	= 3 * (eMa - ta.ema(eMa, length)) + ta.ema(ta.ema(eMa, length), length)
+// float heMa	= ta.wma(2 * ta.wma(src, length / 2) - ta.wma(src, length), math.round(math.sqrt(length)))
+// float mgGinley = na(mg[1]) ? ta.ema(src, length) : mg[1] + (src - mg[1]) / (length * math.pow(src / mg[1], 4))
+
+// Time
+string timeUT0 = input.session('0730-0815:2')
+string timeUT1 = input.session('0900-1030:1234567')
+string timeUT2 = input.session('1100-1145:1234567')
+string timeUT3 = input.session('1200-1300:234567')
+string timeUT4 = input.session('1400-1430:234567')
+
+// Tooltip
+// string tooltipTfNy = "Agrupa la Sesion de este indicador en funcion a su ubicacion en relacion con la hora"
+
+//  Size
+string sizeTiny 	= size.tiny
+string sizeSmall	= size.small
+string sizeNormal	= size.normal
+string sizeLarge	= size.large
+string sizeHuge		= size.huge
+string sizeAuto		= size.auto
+
+//  Line
+string lineSolid  = line.style_solid
+string lineDotted = line.style_dotted
+string lineDashed = line.style_dashed
+
+//  ════════════
+//  My Killzones
+//  Inputs - Options
+//  ══════
+
+string optionSession = input.string(defval="Chicago", title="Sesión", options = ["New York", "Chicago", "Londres", "Shanghai", "Sydney"])
+
+string optionMa	  = input.string("SMA", "Tipo MA", options = ["EMA", "SMA", "RMA", "WMA", "VWMA", "LSMA"])
+
+string optionSize	  = input.string(defval="Auto", title="Tamaño", options = ["Tiny", "Small", "Normal", "Large", "Huge", "Auto"])
+
+string optionLine	  = input.string(defval="Solid", title="Lineas", options = ["Solid", "Dotted", "Dashed"])
+
+//  ════════════
+//  My Killzones
+//  Switch
+//  ══════
+
+//  sesion
+string switchSession = switch optionSession
+	// "Chicago"	=> sessionChig
+	"New York"	=> sessionNewY
+	"Londres"	=> sessionEuro
+	"Shanghai"	=> sessionAsia
+	"Sydney"	=> sessionAust
+	=> tfChig
+
+//  ma
+float switchMa = switch optionMa
+	// "SMA"  => sMa
+	"EMA"  => eMa
+	"RMA"  => rMa
+	"WMA"  => wMa
+	"VWMA" => vwMa
+	"LSMA" => lsMa
+	=> sMa
+
+//  tamaño
+//  functSize(optSize) =>	// encabezado de funcion Size
+//  switch optionSize
+string shitchSize = switch optionSize
+	// "Auto"	 => siAuto
+	"Tiny"	 => sizeTiny
+	"Small"	 => sizeSmall
+	"Normal" => sizeNormal
+	"Large"	 => sizeLarge
+	"Huge"	 => sizeHuge
+	=> sizeAuto
+
+//  linea
+string switchLine = switch optionLine
+	// "Solid"  => lineSolid
+	"Dotted" => lineDotted
+	"Dashed" => lineDashed
+	=> lineSolid
+
+//  ═════════
+//  Multi CMA
+//  Display
+//  ═══════
+// tuesday_london_open_est = time(timeframe.period, '0300-0330:2', "America/New_York")
+areaZero = time(timeframe.period, timeUT0, switchSession)
+areaFirs = time(timeframe.period, timeUT1, switchSession)
+areaSeco = time(timeframe.period, timeUT2, switchSession)
+areaThir = time(timeframe.period, timeUT3, switchSession)
+areaCuar = time(timeframe.period, timeUT4, switchSession)
+
+ifZero = na(areaZero) ? na : colorZero
+ifFirs = na(areaFirs) ? na : colorFirs
+ifSeco = na(areaSeco) ? na : colorSeco
+ifThir = na(areaThir) ? na : colorThir
+ifCuar = na(areaCuar) ? na : colorCuar
+
+bgcolor(ifZero, title = 'Pre Mercado')
+bgcolor(ifFirs, title = 'Inicio Sesión')
+bgcolor(ifSeco, title = 'Sesion Continuada')
+bgcolor(ifThir, title = 'Latelalización')
+bgcolor(ifCuar, title = 'Post Mercado')
