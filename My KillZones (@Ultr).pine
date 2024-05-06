@@ -22,16 +22,16 @@ color colorCuar = color.new(#9598a1, 90)
 // Session
 string sessionNewY = "America/New_York"		// Sesion - America/New York
 string sessionChig = "America/Chicago"		// Sesion - America/Chicago
-string sessionEuro = "Europe/London"			// Sesion - Europa/Londres
+string sessionEuro = "Europe/London"		// Sesion - Europa/Londres
 string sessionAsia = "Asia/Shanghai" 		// Sesion - Asia/Shanghai
-string sessionAust = "Australia/Sydney" 		// Sesion - Asia/Sydney
+string sessionAust = "Australia/Sydney" 	// Sesion - Asia/Sydney
 
 // Time
-string timeUT0 = input.session('0730-0815:2')
-string timeUT1 = input.session('0900-1030:1234567')
-string timeUT2 = input.session('1100-1145:1234567')
-string timeUT3 = input.session('1200-1300:234567')
-string timeUT4 = input.session('1400-1430:234567')
+string timeU0 = input.session('0730-0815:2', title="Time 1")
+string timeU1 = input.session('0900-1030:1234567', title="Time 2")
+string timeU2 = input.session('1100-1145:1234567', title="Time 3")
+string timeU3 = input.session('1200-1300:234567', title="Time 4")
+string timeU4 = input.session('1400-1430:234567', title="Time 5")
 
 //  ════════════
 //  My Killzones
@@ -52,17 +52,17 @@ string switchSession = switch optionSession
 	"Londres"	=> sessionEuro
 	"Shanghai"	=> sessionAsia
 	"Sydney"	=> sessionAust
-	=> tfChig
+	=> sessionChig
 
 //  ════════════
 //  My Killzones
 //  Display
 //  ═══════
-areaZero = time(timeframe.period, timeUT0, switchSession)
-areaFirs = time(timeframe.period, timeUT1, switchSession)
-areaSeco = time(timeframe.period, timeUT2, switchSession)
-areaThir = time(timeframe.period, timeUT3, switchSession)
-areaCuar = time(timeframe.period, timeUT4, switchSession)
+areaZero = time(timeframe.period, timeU0, switchSession)
+areaFirs = time(timeframe.period, timeU1, switchSession)
+areaSeco = time(timeframe.period, timeU2, switchSession)
+areaThir = time(timeframe.period, timeU3, switchSession)
+areaCuar = time(timeframe.period, timeU4, switchSession)
 
 ifZero = na(areaZero) ? na : colorZero
 ifFirs = na(areaFirs) ? na : colorFirs
