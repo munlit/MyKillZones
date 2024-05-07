@@ -1,7 +1,6 @@
 // ╔═══════════════════════════════════════╗
 // ║  @Ultr                                ║
 // ║  My KillZones                         ║
-// ║  © LuxAlgo                            ║
 // ╚═══════════════════════════════════════╝
 
 //@version=5
@@ -20,11 +19,12 @@ color colorThir = color.new(#eedd45, 90)
 color colorCuar = color.new(#9598a1, 90)
 
 // Session
-string sessionNewY = "America/New_York"		// Sesion - America/New York
-string sessionChig = "America/Chicago"		// Sesion - America/Chicago
-string sessionEuro = "Europe/London"		// Sesion - Europa/Londres
-string sessionAsia = "Asia/Shanghai" 		// Sesion - Asia/Shanghai
-string sessionAust = "Australia/Sydney" 	// Sesion - Asia/Sydney
+string sessionNewY = "America/New_York"					// Sesion - America/New York
+string sessionChig = "America/Chicago"					// Sesion - America/Chicago
+string sessionArge = "America/Argentina/Buenos_Aires"	// Sesion - America/Buenos Aires
+string sessionEuro = "Europe/London"					// Sesion - Europa/Londres
+string sessionAsia = "Asia/Shanghai"					// Sesion - Asia/Shanghai
+string sessionAust = "Australia/Sydney"					// Sesion - Asia/Sydney
 
 // Time
 string timeU0 = input.session('0730-0815:2', title="Time 1")
@@ -38,7 +38,7 @@ string timeU4 = input.session('1400-1430:234567', title="Time 5")
 //  Inputs - Options
 //  ══════
 
-string optionSession = input.string(defval="Chicago", title="Sesión", options = ["New York", "Chicago", "Londres", "Shanghai", "Sydney"])
+string optionSession = input.string(defval="Chicago", title="Sesión", options = ["New York", "Chicago", "Londres", "Shanghai", "Sydney", "Argentina"])
 
 //  ════════════
 //  My Killzones
@@ -52,6 +52,7 @@ string switchSession = switch optionSession
 	"Londres"	=> sessionEuro
 	"Shanghai"	=> sessionAsia
 	"Sydney"	=> sessionAust
+	"Argentina"	=> sessionArge
 	=> sessionChig
 
 //  ════════════
