@@ -8,7 +8,7 @@ Este repositorio esta comprendido por nuestro indicador, en futuras versiones in
 
 #### Archivo principal
 
-![.Pine: My Kill Zones.pine](https://github.com/munlit/MyKillZones/blob/master/My%20KillZones%20(%40Ultr).pine)
+[.Pine: My Kill Zones](https://github.com/munlit/MyKillZones/blob/master/My%20KillZones%20(%40Ultr).pine)
 
 *  Solo es necesario copiar el codigo visualizado en RAW
 *  Pegar en el editor Pine de TradingView
