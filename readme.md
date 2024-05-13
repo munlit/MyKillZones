@@ -1,4 +1,4 @@
-![tinyRocket01](https://github.com/munlit/MAsCrossOver/assets/160430345/7daa9f1a-3282-45d2-aa1c-0a05d0b758e9)
+![rocketi](https://github.com/munlit/MyKillZones/assets/160430345/866cece8-485e-4a0a-9fdc-8a59e2ba8a65)
 
 *Repositorio en GitHub* — (http://github.com/munlit/MyKillZones)
 
