@@ -1,4 +1,4 @@
-![rocketi](https://github.com/munlit/MyKillZones/assets/160430345/866cece8-485e-4a0a-9fdc-8a59e2ba8a65)
+![rocketmic](https://github.com/munlit/MyKillZones/assets/160430345/0a848c7a-fb21-4e07-b559-8ba8c8e8d3f0)
 
 *Repositorio* — (http://github.com/munlit/MyKillZones)
 
